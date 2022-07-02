@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script src="js/three.js"></script>
+		<script>
+			const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			
+			const material = new THREE.MeshBasicMaterial( { color: 0xFF5733,wireframe:true } );
+			
+			
+			const geometry = new THREE.BufferGeometry();
+			const a=1;
+			const b=2;
+			const c=3;
+// create a simple square shape. We duplicate the top left and bottom right
+// vertices because each vertex needs to appear once per triangle.
+const vertices = new Float32Array( [
+  
+  0,0,0,
+  0,b,0,
+  a,0,0,
+  
+  0,0,c,
+  0,b,c,
+  a,0,c,
+  
+  0,b,0,
+  0,b,c,
+  0,0,0,
+  
+  0,b,0,
+  0,0,0,
+  0,0,c,
+  
+  a,0,0,
+  a,0,c,
+  0,0,0,
+  
+  a,0,0,
+  0,b,0,
+  0,b,c,
+  
+  a,0,0,
+  0,b,c,
+  a,0,c,
+  
+] );
+
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+const element = new THREE.Mesh( geometry, material );
+			
+			camera.position.z = 10;
+			scene.add(element);
+
+		
+			
+			var angle = 0;
+			
+			
+			
+
+			function animate() {
+				requestAnimationFrame( animate );
+				
+				
+				element.rotation.y += 0.01;
+				element.rotation.y += 0.01;
+				//element2.rotation.x += 0.01;
+				//element.rotation.Z += 0.01;
+				
+				//camera.position.x  = 10 * Math.sin(angle );
+				//camera.position.y = 10 * Math.cos(angle );
+				//line.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+		</script>
+	</body>
+</html>
